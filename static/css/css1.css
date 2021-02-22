@@ -1,0 +1,160 @@
+*{
+    margin : 0px;
+    padding : 0px; 
+    box-sizing : border-box;
+    font-size : 20px;
+    font-weight: bold;
+    color :#efefef;
+}
+#content{
+    width : auto;
+    height : 1000px;
+}
+#header{
+    width : auto;
+    height : 80px;
+    background-color: #282727;
+}
+#header > div{
+    position : absolute;
+    margin : 25px;
+    background-color: #282727;
+}
+#header > div > div> span{
+    margin : 15px;
+}
+#box{ /* 헤더 더미파일 */
+    display : inline-block;
+    position: relative;
+    left : 12rem;
+} 
+#body{
+    display : block;
+    background-color:#6D6A6A;
+}
+#body > div{
+    border : solid 1px #282727;
+    margin : 25px;   
+    border-radius: 20px;
+}
+#body > #video{
+    width : 868px;
+    height : 500px;
+    background-color: #282727;
+}
+#body > #video > div{
+    margin : 15px;
+    height : 470px;
+    background-color: cornsilk;
+    border-radius: 20px;
+}
+#video{
+    display: inline-block;
+}
+#body > .select{
+ 
+    display: inline-block;
+    width : 400px;
+    height : 500px;
+    background-color:  #282727; 
+}
+.select > div {
+    margin : 15px;
+    height : 480px;
+    background-color: #282727;
+    border-radius: 20px;
+}
+#select1 > div > li {
+    text-align: center;
+    /*vertical-align: 100px;*/
+    list-style: none;
+    padding-left: 0px; /* 점 지우기 */
+
+    margin : 1px 0px;
+    height : 50px;
+    line-height: 50px; /*전체 크기와 일치시키기*/
+    background-color: dimgray;
+}
+
+#select1 > div> li:nth-child(1){
+    /*background-color: dodgerblue;*/
+    border-top-left-radius: 15px;
+    border-top-right-radius: 15px;
+}
+#select1 > div > li:nth-child(9){
+    border-bottom-left-radius: 15px;
+    border-bottom-right-radius: 15px;
+}
+#select2 > div > li {
+    text-align: center;
+    /*vertical-align: 100px;*/
+    list-style: none;
+    padding-left: 0px; /* 점 지우기 */
+    margin : 8px;
+    border-radius: 20px;
+    height : 85px;
+    line-height: 85px;
+    background-color: dimgray;
+}
+#footer{
+    width : auto;
+    height : 600px;
+    background-color:#6D6A6A;
+}
+#footer > div{
+    width : auto;
+    height : 230px;
+    margin : 0px 25px;
+    /*position: absolute;*/
+    background-color: #282727;
+    border-radius: 20px;
+}
+
+
+#time{
+    color : green;
+}
+
+
+#changevideo{
+    height : 470px;
+    background-color: cornsilk;
+    border-radius: 20px;
+}
+
+#footer > #chartjs{
+    width : 860px;
+    height : 480px;
+}
+.clicked{
+    color :#64FE2E;
+}
+
+/*--가변--*/
+
+
+@media screen and (min-width :1400px){
+    #body > .select{   
+        width : 250px;
+        height : 500px;
+        background-color:  #282727;
+    }
+    #body > .select> div{   
+        width : 220px;
+        height : 300x;
+        background-color:  #282727;
+    }
+    #body{
+        display: flex;
+    }
+    #box{
+        display : inline-block;
+        position: relative;
+        left : 42rem;
+    }  
+    #footer > #chartjs{
+        width : 1470px;
+        height : 250px;
+    }
+
+}

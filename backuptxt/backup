@@ -1,0 +1,111 @@
+from flask import Flask, render_template
+from flask import request, jsonify
+from pydbc import pydbcCO ,pydbcinit,pydbcCA,pydbcAO,tuplepydbcinit
+import cx_Oracle as cx
+import numpy as np
+import json
+
+conn = cx.connect("hr", "hr", "localhost:1521/xe")
+cursor = conn.cursor()  # 커서 생성
+
+
+app = Flask(__name__)
+
+@app.route('/') # 최초 실행 
+def html():
+    chartdata=pydbcinit()
+    return render_template('intf2.html',chartdata=chartdata)
+
+
+@app.route('/init') # 최초 실행 
+def init():
+    sql = "select distinct current_dt,sum(activity), sum(feed), sum(drinking) from itf group by current_dt order by current_dt"
+    cursor.execute(sql)
+    datas = json.dumps(cursor.fetchall())
+    return datas
+
+@app.route('/cam',methods =['POST']) 
+def cam():
+    val1 = request.form['lis1']
+    sql = "select distinct current_dt,sum(activity), sum(feed), sum(drinking) from itf where camera_id = "+val1+" group by current_dt order by current_dt asc"
+    cursor.execute(sql)
+    datas = json.dumps(cursor.fetchall())
+    return datas
+
+@app.route('/obj' ,methods =['POST'])
+def obj():
+    val1 = request.form['lis1']
+    val2 = request.form['lis2']
+    if val1 == "0" :
+        sql = "select distinct current_dt,sum(activity), sum(feed), sum(drinking) from itf where object_id = "+val2+" group by current_dt order by current_dt asc"
+    elif val1 == "0" and val2 :
+        sql = "select distinct current_dt,sum(activity), sum(feed), sum(drinking) from itf group by current_dt order by current_dt"
+    else :    
+        sql = "SELECT distinct current_dt,sum(activity), sum(feed), sum(drinking) FROM itf WHERE camera_id = "+val1+" AND object_id = "+val2+" group by current_dt order by current_dt asc"
+    cursor.execute(sql)
+    datas = json.dumps(cursor.fetchall())
+    return datas
+
+
+
+if __name__ == '__main__':
+    app.run(debug='True')
+
+
+
+/------/
+/*
+$(function(){    //전체 X 전체 
+    $("#camera0").on("click" ,function(){
+        $.ajax({
+            url:"/init",           
+            success : function(data){
+                this.chartdata = data
+                alert(chartdata)
+            },
+            error : function(){
+                console.log("x");
+            }
+        });
+    });
+});
+$(function(){   
+    $(".cli").on("click" ,function(){
+        var li1 = $('#lis1').val();
+        $.ajax({
+            type:'POST',
+            url:"/cam",
+            data : { lis1 : li1 },           
+            success : function(data){
+                this.chartdata = data
+                alert(data)
+            },
+            error : function(){
+                console.log("실패");
+            }
+        });
+    });
+});
+
+$(function(){   
+    $(".list2").on("click" ,function(){
+        var li1 = $('#lis1').val();
+        var li2 = $('#lis2').val();
+        $.ajax({
+            type:'POST',
+            url:"/obj",
+            data : {
+                lis1 : li1 ,
+                lis2 : li2
+            },           
+            success : function(data){
+                this.chartdata = data
+                alert(data)
+            },
+            error : function(){
+                console.log("실패");
+            }
+        });
+    });
+});
+*/

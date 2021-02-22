@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>인트플로우</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/css1.css')}}" type="text/css">
+    <script src="{{ url_for('static', filename='js/jquery-3.5.1.min.js')}}"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0"></script>
+    <script src = "{{ url_for('static', filename='js/javascript.js')}}"></script>
+</head>
+<body>
+    <div id="content">
+        <input type="hidden" id="lis1" value=0 /> <!-- 넘겨줄 값 -->
+        <input type="hidden" id="lis2" value=0 />
+
+        <div id="header">
+            <div>
+                <span id="time">시간</span>
+                <div id="box">
+                    <span id="page1" class="page">관제페이지</span>
+                    <span id="page2" class="page">이전페이지</span>
+                    <span id="menu" class="page">메뉴</span>
+                </div>
+            </div>
+        </div>
+        <div id="body">
+            <div id="video">
+                <div>
+                    <video id=changevideo src="{{ url_for('static', filename='project1.mp4')}}" controls></video>
+                </div>
+            </div>
+            <div id="select1" class="select">
+                <div>
+                    <li class="list1 btn" id="camera0">전체 카메라</li>
+                    <li class="list1 cli btn" id="camera1">1번 카메라</li>
+                    <li class="list1 cli btn" id="camera2">2번 카메라</li>
+                    <li class="list1 cli btn" id="camera3">3번 카메라</li>
+                    <li class="list1">4번 카메라</li>
+                    <li class="list1">5번 카메라</li>
+                    <li class="list1">6번 카메라</li>
+                    <li class="list1">7번 카메라</li>
+                    <li class="list1">8번 카메라</li>
+                </div>
+            </div>
+            <div id="select2" class="select">
+                <div>
+                    <li class="list2 btn">전체 개체</li>
+                    <li class="list2 btn">1번 개체</li>
+                    <li class="list2 btn">2번 개체</li>
+                    <li class="list2 btn">3번 개체</li>
+                    <li class="list2 btn">4번 개체</li>
+                </div>
+            </div>
+        </div>
+        <div id="footer">
+            <div id="chartjs">
+                <canvas id=record></canvas>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

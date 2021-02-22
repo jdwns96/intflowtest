@@ -1,0 +1,26 @@
+
+datas = [list(datas[x]) for x in range(len(datas))]
+배열로 빼기
+
+@app.route('/choice',methods =['POST'])
+def choice():  
+    val1 = request.form['lis1']
+    val2 = request.form['lis2']
+    if val1 == "0" and val2 == "0" : 
+        sql = "select distinct current_dt,sum(activity), sum(feed), sum(drinking) from itf group by current_dt order by current_dt"
+        cursor.execute(sql)
+        datas = json.dumps(cursor.fetchall())
+        print(" 첫번째누름")
+    elif val1 == "0" and val2 !="0" :  
+        sql = "select distinct current_dt,sum(activity), sum(feed), sum(drinking) from itf where camera_id = "+val2+" group by current_dt order by current_dt asc"
+        cursor.execute(sql)
+        datas = json.dumps(cursor.fetchall())
+    elif val1 != "0" and val2 == "0" : 
+        sql = "select distinct current_dt,sum(activity), sum(feed), sum(drinking) from itf where camera_id = "+val1+" group by current_dt order by current_dt asc"
+        cursor.execute(sql)
+        datas = json.dumps(cursor.fetchall())
+    else : 
+        sql = "SELECT distinct current_dt,sum(activity), sum(feed), sum(drinking) FROM itf WHERE camera_id = "+val1+" AND object_id = "+val2+" group by current_dt order by current_dt asc"
+        cursor.execute(sql)
+        datas = json.dumps(cursor.fetchall())
+    return datas

@@ -1,0 +1,38 @@
+CREATE TABLE itf (current_dt NUMBER(20),camera_id NUMBER(5), object_id NUMBER(5), activity NUMBER(5), feed NUMBER(5), drinking NUMBER(5));
+
+
+행 읽기
+select distinct current_dt from intflow order by current_dt asc;
+
+
+
+전체 - 전체개체 
+
+select distinct current_dt,sum(activity), sum(feed), sum(drinking) 
+from intflow 
+group by current_dt order by current_dt asc;
+
+전체 - 개체1
+
+select distinct current_dt,sum(activity), sum(feed), sum(drinking) 
+from intflow 
+where object_id = 1 
+group by current_dt order by current_dt asc;
+
+카메라1 - 전체개체
+
+select distinct current_dt,sum(activity), sum(feed), sum(drinking) 
+from intflow 
+where camera_id = 1 
+group by current_dt order by current_dt asc;
+
+카메라1- 개채1
+
+select distinct current_dt,sum(activity), sum(feed), sum(drinking) 
+from intflow 
+where camera_id = 1
+AND object_id = 1
+group by current_dt order by current_dt asc;
+
+
+
