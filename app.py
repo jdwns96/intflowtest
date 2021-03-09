@@ -34,3 +34,6 @@ def all():
 if __name__ == '__main__':
     app.run(debug='True')
 
+
+    # 변한게 있는가 ?
+
